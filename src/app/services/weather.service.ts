@@ -1,36 +1,35 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { of } from 'rxjs';
+import { tap, switchMap, map } from 'rxjs/operators';
+import { of, forkJoin } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class WeatherService {
   constructor(private http: HttpClient) { }
 
-  getCityKeyFromAutoComplete(cityName: string) {
-    return of(
-      [
-        {
-          Version: 1,
-          Key: '215613',
-          Type: 'City',
-          Rank: 45,
-          LocalizedName: 'Ashdod',
-          Country: {
-            ID: 'IL',
-            LocalizedName: 'Israel'
-          },
-          AdministrativeArea: {
-            ID: 'D',
-            LocalizedName: 'Southern District'
-          }
-        }
-      ]
+  getCurrentData() {
+    return this.getCityKeyFromAutoComplete('')
+    .pipe(
+      switchMap(cityDetails => {
+        return forkJoin(
+          cityDetails[0].LocalizedName,
+          this.getCurrentCondition(cityDetails[0].Key),
+          this.getForecast(cityDetails[0].Key)
+        );
+      }),
+      map(([cityName , currentData, dailyForecasts]) => {
+        return {
+          cityName,
+          currentCondition: currentData[0],
+          forecast: dailyForecasts
+        };
+      })
     );
   }
 
-  getCurrentCondition() {
+  private getCurrentCondition(cityKey: string) {
     return of(
       [
         {
@@ -60,7 +59,7 @@ export class WeatherService {
     );
   }
 
-  getForecast() {
+  private getForecast(cityKey: string) {
     return of(
       {
         Headline: {
@@ -232,6 +231,28 @@ export class WeatherService {
           }
         ]
       }
+    );
+  }
+
+  private getCityKeyFromAutoComplete(cityName: string) {
+    return of(
+      [
+        {
+          Version: 1,
+          Key: '215613',
+          Type: 'City',
+          Rank: 45,
+          LocalizedName: 'Ashdod',
+          Country: {
+            ID: 'IL',
+            LocalizedName: 'Israel'
+          },
+          AdministrativeArea: {
+            ID: 'D',
+            LocalizedName: 'Southern District'
+          }
+        }
+      ]
     );
   }
 

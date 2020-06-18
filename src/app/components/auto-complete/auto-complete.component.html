@@ -1,1 +1,8 @@
-<p>auto-complete works!</p>
+<section fxLayout="row" fxLayoutAlign="center center">
+  <form  [formGroup]="searchForm" >
+    <mat-form-field class="form-field" >
+      <mat-label>Enter location</mat-label>
+      <input matInput formControlName="search">
+    </mat-form-field>
+  </form>
+</section>
