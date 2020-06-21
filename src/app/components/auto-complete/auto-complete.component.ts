@@ -3,8 +3,6 @@ import { Store } from '@ngrx/store';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
 
-import { WeatherState } from 'src/app/features/weather/store/weather.reducer';
-import * as fromWeatherActions from '../../features/weather/store/weather.actions';
 
 @Component({
   selector: 'app-auto-complete',
@@ -17,7 +15,6 @@ export class AutoCompleteComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private store: Store<WeatherState>
   ) { }
 
   ngOnInit() {
@@ -26,7 +23,7 @@ export class AutoCompleteComponent implements OnInit {
     });
     this.searchForm.get('search').valueChanges.subscribe( data => {
       // get weather data according to search term
-      this.store.dispatch(new fromWeatherActions.LoadWeather());
+      // this.store.dispatch(new fromWeatherActions.LoadWeather());
     });
   }
 }

@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
-import { StoreModule } from '@ngrx/store';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { EffectsModule } from '@ngrx/effects';
 
 
 import { ComponentsModule } from '../../components/components.module';
@@ -10,8 +8,6 @@ import { CurrentWeatherComponent } from './current-weather/current-weather.compo
 import { ForecastComponent } from './forecast/forecast.component';
 import { ForecastItemComponent } from './forecast/forecast-item/forecast-item.component';
 import { MaterialModule } from 'src/app/material.module';
-import * as fromWeatherState from './store/weather.reducer';
-import { WeatherEffects } from './store/weather.effects';
 
 @NgModule({
   declarations: [
@@ -24,10 +20,6 @@ import { WeatherEffects } from './store/weather.effects';
     MaterialModule,
     FlexLayoutModule,
     ComponentsModule,
-    EffectsModule.forFeature([WeatherEffects]),
-    StoreModule.forFeature(
-      fromWeatherState.weatherStateFeatureKey,
-      fromWeatherState.weatherReducer),
   ],
   exports: [
     WeatherComponent
