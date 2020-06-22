@@ -12,12 +12,12 @@ import { Weather } from '../../models/weather.model';
   styleUrls: ['./current-weather.component.scss']
 })
 export class CurrentWeatherComponent implements OnInit {
-  currentCondition$: Observable<CurrentCondition>;
+  currentCondition$: Observable<Weather[]>;
   constructor(private store: Store<fromWeather.WeatherState>) { }
 
   ngOnInit(): void {
-    this.currentCondition$ = this.store.pipe(select(fromWeather.getCurrentWeatherState));
-    // this.store.pipe(select(fromWeather.getCurrentConditions)).subscribe(data => console.log(data));
+    // this.currentCondition$ = this.store.pipe(select(fromWeather.getCurrentWeatherState));
+    // this.store.pipe(select(fromWeather.getCurrentWeatherState)).subscribe(data => console.log(data));
   }
 
 }
