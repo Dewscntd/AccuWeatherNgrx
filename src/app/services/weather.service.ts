@@ -9,10 +9,11 @@ import { environment } from 'src/environments/environment';
 export class WeatherService {
   constructor(private http: HttpClient) { }
 
-  getCurrentData() {
+  getCurrentWeatherData() {
     return this.getCityKeyFromAutoComplete('')
     .pipe(
       switchMap(cityDetails => {
+        // tslint:disable-next-line: deprecation
         return forkJoin(
           cityDetails[0].LocalizedName,
           this.getCurrentCondition(cityDetails[0].Key),

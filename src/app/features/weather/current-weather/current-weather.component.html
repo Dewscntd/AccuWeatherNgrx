@@ -1,9 +1,17 @@
-<mat-card class="example-card" fxFlex="320px" fxFlex.sm="600px" fxLayout="column" fxLayoutAlign="center center" fxLayoutAlign.sm="space-between" fxLayout.sm="row" >
+<!-- <mat-card
+  class="example-card"
+  fxFlex="320px"
+  fxFlex.sm="600px"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+  fxLayoutAlign.sm="space-between"
+  fxLayout.sm="row"
+  >
   <mat-card-header>
     <img mat-card-avatar src="https://developer.accuweather.com/sites/default/files/01-s.png" alt="sunny">
-    <mat-card-title>Tel Aviv</mat-card-title>
-    <mat-card-subtitle>29&deg;c </mat-card-subtitle>
-    <mat-card-subtitle>clear</mat-card-subtitle>
+    <mat-card-title></mat-card-title>
+    <mat-card-subtitle>{{currentCondition$.Temperature.metric.value}}&deg;c </mat-card-subtitle>
+    <mat-card-subtitle>{{currentCondition$ }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <mat-card-actions>
@@ -15,4 +23,5 @@
       </div>
       </mat-card-actions>
   </mat-card-content>
-</mat-card>
+</mat-card> -->
+<div>{{currentCondition$ | async}}</div>
