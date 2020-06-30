@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { CurrentCondition } from '../../models/current-condition.model';
-import * as fromWeather from '../store/index';
 import { Weather } from '../../models/weather.model';
 
 @Component({
@@ -13,7 +10,7 @@ import { Weather } from '../../models/weather.model';
 })
 export class CurrentWeatherComponent implements OnInit {
   currentCondition$: Observable<Weather[]>;
-  constructor(private store: Store<fromWeather.WeatherState>) { }
+  constructor() { }
 
   ngOnInit(): void {
     // this.currentCondition$ = this.store.pipe(select(fromWeather.getCurrentWeatherState));
