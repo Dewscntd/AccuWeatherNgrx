@@ -1,4 +1,4 @@
-<!-- <mat-card
+<mat-card
   class="example-card"
   fxFlex="320px"
   fxFlex.sm="600px"
@@ -6,15 +6,16 @@
   fxLayoutAlign="center center"
   fxLayoutAlign.sm="space-between"
   fxLayout.sm="row"
+  *ngIf="currentCondition$ |async"
   >
   <mat-card-header>
     <img
       mat-card-avatar
       alt="sunny"
       src="https://developer.accuweather.com/sites/default/files/01-s.png">
-    <mat-card-title>Ashdod</mat-card-title>
-    <mat-card-subtitle>30 &deg;c </mat-card-subtitle>
-    <mat-card-subtitle>clear</mat-card-subtitle>
+      <mat-card-title>{{(currentCondition$| async).cityName }}</mat-card-title>
+      <mat-card-subtitle>{{(currentCondition$ | async).currentCondition.Temperature.Metric.Value}}&deg;c </mat-card-subtitle>
+      <mat-card-subtitle>{{(currentCondition$ | async).currentCondition.WeatherText}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <mat-card-actions>
@@ -29,10 +30,4 @@
       </div>
       </mat-card-actions>
   </mat-card-content>
-</mat-card> -->
-<div>{{(currentCondition$ | async).currentCondition.Link}}</div>
-
-<!--
-<mat-card-title>{{(currentCondition$| async).cityName }}</mat-card-title>
-<mat-card-subtitle>{{(currentCondition$ | async).currentCondition.Temperature.Metric.Value}}&deg;c </mat-card-subtitle>
-<mat-card-subtitle>{{(currentCondition$ | async).currentCondition.WeatherText}}</mat-card-subtitle> -->
+</mat-card>
