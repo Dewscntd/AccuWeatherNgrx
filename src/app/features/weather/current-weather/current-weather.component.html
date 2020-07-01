@@ -1,4 +1,4 @@
-<!-- <mat-card
+<mat-card
   class="example-card"
   fxFlex="320px"
   fxFlex.sm="600px"
@@ -8,20 +8,31 @@
   fxLayout.sm="row"
   >
   <mat-card-header>
-    <img mat-card-avatar src="https://developer.accuweather.com/sites/default/files/01-s.png" alt="sunny">
-    <mat-card-title></mat-card-title>
-    <mat-card-subtitle>{{currentCondition$.Temperature.metric.value}}&deg;c </mat-card-subtitle>
-    <mat-card-subtitle>{{currentCondition$ }}</mat-card-subtitle>
+    <img
+      mat-card-avatar
+      alt="sunny"
+      src="https://developer.accuweather.com/sites/default/files/01-s.png">
+    <mat-card-title>Ashdod</mat-card-title>
+    <mat-card-subtitle>30 &deg;c </mat-card-subtitle>
+    <mat-card-subtitle>clear</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <mat-card-actions>
       <div class="fav-button-cont">
-        <button mat-raised-button color="primary" aria-label="heart">
+        <button
+          mat-raised-button
+          color="primary"
+          aria-label="heart">
           Add To Favorites
           <mat-icon>favorite</mat-icon>
         </button>
       </div>
       </mat-card-actions>
   </mat-card-content>
-</mat-card> -->
-<div>{{currentCondition$ | async}}</div>
+</mat-card>
+<div>{{(currentCondition$ | async).currentCondition.Link}} dfgdg</div>
+
+<!--
+<mat-card-title>{{(currentCondition$| async).cityName }}</mat-card-title>
+<mat-card-subtitle>{{(currentCondition$ | async).currentCondition.Temperature.Metric.Value}}&deg;c </mat-card-subtitle>
+<mat-card-subtitle>{{(currentCondition$ | async).currentCondition.WeatherText}}</mat-card-subtitle> -->

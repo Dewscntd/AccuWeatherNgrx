@@ -6,6 +6,7 @@ import { of, forkJoin } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({providedIn: 'root'})
+
 export class WeatherService {
   constructor(private http: HttpClient) { }
 
