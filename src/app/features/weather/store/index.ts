@@ -37,7 +37,7 @@ export const reducers = createReducer(
     return {
       ...state,
       isLoading: false,
-      currentCondition: action.currentConditions
+      currentCondition: {...action.payload}
     };
   }),
   on(fromWeatherActions.loadWeatherFailure, (state, action) => {

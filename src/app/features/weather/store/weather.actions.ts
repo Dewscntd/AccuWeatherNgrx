@@ -8,7 +8,7 @@ export const loadWeather = createAction(
 
 export const loadWeatherSuccess = createAction(
   '[Weather Effect] Load Weather Success',
-  props<{ currentConditions: Weather }>()
+  props<{ payload: Weather }>()
 );
 
 export const loadWeatherFailure = createAction(
