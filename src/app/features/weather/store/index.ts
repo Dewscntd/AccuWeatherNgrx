@@ -13,13 +13,13 @@ import * as fromWeatherActions from './weather.actions';
 
 export const weatherStateFeatureKey = 'weatherState';
 
-export interface WeatherState {
+export interface CurrentWeatherState {
   currentCondition: Weather;
   isLoading: boolean;
   error: Error;
 }
 
-const initialState: WeatherState = {
+const initialState: CurrentWeatherState = {
   currentCondition: null,
   isLoading: false,
   error: null
@@ -49,10 +49,15 @@ export const reducers = createReducer(
   })
 );
 
-export const selectCurrentConditionFeature = createFeatureSelector<WeatherState>(weatherStateFeatureKey);
+export const getCurrentConditions = (state: CurrentWeatherState) => state.currentCondition;
+
+export const selectCurrentConditionFeatureState = createFeatureSelector<CurrentWeatherState>(weatherStateFeatureKey);
 export const selectCurrentCondition = createSelector(
-  selectCurrentConditionFeature,
-  (state: WeatherState) => state.currentCondition
+  selectCurrentConditionFeatureState,
+  (state: CurrentWeatherState) => state.currentCondition
 );
 
-export const metaReducers: MetaReducer<WeatherState>[] = !environment.production ? [] : [];
+export const getAllCurrentCondition = createSelector(selectCurrentConditionFeatureState, getCurrentConditions);
+
+
+export const metaReducers: MetaReducer<CurrentWeatherState>[] = !environment.production ? [] : [];

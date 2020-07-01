@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
 import { Weather } from '../../models/weather.model';
-import { WeatherState } from '../store';
 import * as fromWeather from '../store/index';
 
 @Component({
@@ -13,10 +12,10 @@ import * as fromWeather from '../store/index';
 })
 export class CurrentWeatherComponent implements OnInit {
   currentCondition$: Observable<Weather>;
-  constructor(private store: Store<WeatherState>) { }
+  constructor(private store: Store<fromWeather.CurrentWeatherState>) { }
 
   ngOnInit(): void {
-    this.currentCondition$ = this.store.pipe(select(fromWeather.selectCurrentCondition));
+    this.currentCondition$ = this.store.pipe(select(fromWeather.getAllCurrentCondition));
   }
 
 }

@@ -14,11 +14,11 @@ export class WeatherEffects {
     ofType(fromWeatherActions.loadWeather),
     mergeMap(() => this.weatherService.getCurrentWeatherData()
       .pipe(
-        map( (currentCondition: Weather) => fromWeatherActions.loadWeatherSuccess({
+        map( (currentCondition: Weather) => fromWeatherActions.loadWeatherSuccess({ payload: {
           cityName: currentCondition.cityName,
           currentCondition: currentCondition.currentCondition,
           forecast: currentCondition.forecast
-        }),
+        }}),
           catchError(() => EMPTY)
         ))
     )
