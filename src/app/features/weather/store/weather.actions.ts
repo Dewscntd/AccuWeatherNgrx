@@ -3,15 +3,15 @@ import { createAction, props } from '@ngrx/store';
 import { Weather } from '../../models/weather.model';
 
 export const loadWeather = createAction(
-  '[AutoComplete] Load Weather'
-);
+  '[AutoComplete] Load Weathers'
+  );
 
 export const loadWeatherSuccess = createAction(
-  '[Weather Effect] Load Weather Success',
+  '[Weather/API] Load Weather',
   props<{ payload: Weather }>()
 );
 
-export const loadWeatherFailure = createAction(
-  '[Weather Effect] Load Weather Failure',
-  props<{ error: any }>()
+export const loadWeatherFail = createAction(
+  '[Weather/API] Load Weather',
+  props<{ error: Error }>()
 );

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { CurrentWeatherState } from 'src/app/features/weather/store';
+import { CurrentWeatherState } from '../../features/weather/store/weather.reducer';
 import * as fromWeatherActions from '../../features/weather/store/weather.actions';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
