@@ -27,11 +27,8 @@ import { WeatherEffects } from './store/weather.effects';
     CommonModule,
     StoreModule.forFeature(
       fromWeather.weathersFeatureKey,
-      fromWeather.reducer,
-       {
-          // metaReducers: fromWeatherState.metaReducers
-     }),
-    // EffectsModule.forFeature([WeatherEffects]),
+      fromWeather.reducer
+      ),
     StoreModule.forFeature(fromWeather.weathersFeatureKey, fromWeather.reducer),
     EffectsModule.forFeature([WeatherEffects]),
   ],
