@@ -12,11 +12,7 @@ import * as fromFavoritesState from './store/favorites.reducer';
   ],
   imports: [
     MaterialModule,
-    FlexLayoutModule,
-    StoreModule.forFeature(
-      fromFavoritesState.favoritesStateFeatureKey,
-      fromFavoritesState.reducer,
-      { metaReducers: fromFavoritesState.metaReducers }),
+    FlexLayoutModule
   ],
   exports: [
     FavoritesComponent

@@ -6,25 +6,24 @@ import { Weather } from '../../models/weather.model';
 
 export const weathersFeatureKey = 'weathers';
 
-export interface CurrentWeatherState extends EntityState<Weather> {
-  // additional entities state properties
+export interface CurrentWeatherState {
+  currentCondition: Weather;
   isLoading: boolean;
   error: any;
 }
 
-export const adapter: EntityAdapter<Weather> = createEntityAdapter<Weather>();
 
-export const initialState: CurrentWeatherState = adapter.getInitialState({
-  // additional entity state properties
+export const initialState: CurrentWeatherState = {
+  currentCondition: null,
   isLoading: false,
   error: null
-});
+};
 
 
 const productReducer = createReducer(
   initialState,
   on(WeatherActions.loadWeather,
-    (state, action) => {
+    state => {
       return {
         ...state,
         isLoading: true
@@ -32,7 +31,13 @@ const productReducer = createReducer(
     }
   ),
   on(WeatherActions.loadWeatherSuccess,
-    (state, action) => adapter.addOne(action.payload, state)
+    (state, { weather }) => {
+      return {
+        ...state,
+        currentCondition: weather,
+        isLoading: false
+      };
+    }
   ),
   on(WeatherActions.loadWeatherFail,
     (state, action) => {
@@ -48,11 +53,3 @@ const productReducer = createReducer(
 export function reducer(state: CurrentWeatherState | undefined, action: Action) {
   return productReducer(state, action);
 }
-
-
-export const {
-  selectIds,
-  selectEntities,
-  selectAll,
-  selectTotal,
-} = adapter.getSelectors();

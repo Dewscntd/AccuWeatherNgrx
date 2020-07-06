@@ -8,7 +8,7 @@ export const loadWeather = createAction(
 
 export const loadWeatherSuccess = createAction(
   '[Weather/API] Load Weather',
-  props<{ payload: Weather }>()
+  props<{ weather: Weather }>()
 );
 
 export const loadWeatherFail = createAction(

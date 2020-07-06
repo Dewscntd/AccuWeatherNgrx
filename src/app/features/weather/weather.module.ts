@@ -25,11 +25,6 @@ import { WeatherEffects } from './store/weather.effects';
     FlexLayoutModule,
     ComponentsModule,
     CommonModule,
-    StoreModule.forFeature(
-      fromWeather.weathersFeatureKey,
-      fromWeather.reducer
-      ),
-    StoreModule.forFeature(fromWeather.weathersFeatureKey, fromWeather.reducer),
     EffectsModule.forFeature([WeatherEffects]),
   ],
   exports: [
