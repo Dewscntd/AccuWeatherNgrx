@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { WeatherComponent } from './features/weather/weather.component';
+import { FavoritesComponent } from './features/favorites/favorites.component';
 
 const routes: Routes = [
   {
@@ -10,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'favorites',
-    loadChildren:  () => import('./features/favorites/favorites.module').then(mod => mod.FavoritesModule)
+    component: FavoritesComponent
   }
 ];
 

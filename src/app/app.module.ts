@@ -3,21 +3,22 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { WeatherService } from './services/weather.service';
 import { WeatherModule } from './features/weather/weather.module';
-
 import { HeaderComponent } from './shared/header/header.component';
-import { FavoritesRoutingModule } from './features/favorites/favorites-routing.module';
-import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './app.effects';
+
+import * as fromApp from './store/app.reducer';
+import { FavoritesModule } from './features/favorites/favorites.module';
+
 
 @NgModule({
   declarations: [
@@ -32,14 +33,8 @@ import { AppEffects } from './app.effects';
     HttpClientModule,
     WeatherModule,
     MatInputModule,
-    FavoritesRoutingModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers,
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true
-      }
-    }),
+    FavoritesModule,
+    StoreModule.forRoot(fromApp.appReducer),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([AppEffects]),
   ],
