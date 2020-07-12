@@ -4,7 +4,7 @@ import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import * as WeatherActions from './weather.actions';
 import { Weather } from '../../models/weather.model';
 
-export const weathersFeatureKey = 'weathers';
+export const weathersFeatureKey = 'weather';
 
 export interface CurrentWeatherState {
   currentCondition: Weather;
@@ -53,3 +53,8 @@ const productReducer = createReducer(
 export function reducer(state: CurrentWeatherState | undefined, action: Action) {
   return productReducer(state, action);
 }
+
+export const getCurrentWeather = (state: CurrentWeatherState) => state.currentCondition;
+export const getWeatherLoadingError = (state: CurrentWeatherState) => state.error;
+export const getWeatherIsLoading = (state: CurrentWeatherState) => state.isLoading;
+
