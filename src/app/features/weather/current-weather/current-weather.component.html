@@ -6,29 +6,33 @@
   fxLayoutAlign="center center"
   fxLayoutAlign.sm="space-between"
   fxLayout.sm="row"
-  *ngIf="currentCondition$ |async"
+  *ngIf="currentCondition$ | async"
   >
   <mat-card-header>
     <img
       mat-card-avatar
       alt="sunny"
       src="https://developer.accuweather.com/sites/default/files/01-s.png">
-      <mat-card-title>{{(currentCondition$| async).cityName }}</mat-card-title>
-      <mat-card-subtitle>{{(currentCondition$ | async).currentCondition.Temperature.Metric.Value}}&deg;c </mat-card-subtitle>
-      <mat-card-subtitle>{{(currentCondition$ | async).currentCondition.WeatherText}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
+    <mat-card-subtitle>{{ locationName$ | async}}</mat-card-subtitle>
+    <mat-card-subtitle>
+      {{(currentCondition$ | async).currentCondition.Temperature.Metric.Value}}&deg;
+      {{(currentCondition$ | async)}}
+    </mat-card-subtitle>
+    <mat-card-subtitle>{{(currentCondition$ | async).currentCondition.WeatherText}}</mat-card-subtitle>
+    <mat-card-subtitle>{{(currentCondition$ | async).currentCondition.Temperature.Metric.UnitType}}</mat-card-subtitle>
     <mat-card-actions>
       <div class="fav-button-cont">
         <button
           mat-raised-button
           color="primary"
-          aria-label="heart">
-          Add To Favorites
-          (click)="addToFavorites()"
+          aria-label="heart"
+          (click)="addToFavorites()">
           <mat-icon>favorite</mat-icon>
         </button>
       </div>
       </mat-card-actions>
   </mat-card-content>
 </mat-card>
+

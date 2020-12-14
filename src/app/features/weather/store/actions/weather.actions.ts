@@ -1,17 +1,18 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Weather } from '../../models/weather.model';
+import { Weather } from '../../../models/weather.model';
 
 export const loadWeather = createAction(
-  '[AutoComplete] Load Weathers'
+  '[Current-weather Component] Load Weather starts',
+  props<{cityKey: string }>()
   );
 
 export const loadWeatherSuccess = createAction(
-  '[Weather/API] Load Weather',
+  '[Weather Effects] Load Weather successful',
   props<{ weather: Weather }>()
 );
 
 export const loadWeatherFail = createAction(
-  '[Weather/API] Load Weather',
+  '[Weather Effects] Load Weather failed',
   props<{ error: Error }>()
 );
